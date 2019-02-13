@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<title>Buy and Sell Tickets: Concerts, Sports, &amp; Theatre |
+	Vivid Seats</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="js/app.js"></script>
+
+</head>
+<body ng-app="myApp">
+	<div class="container" ng-controller="eventController">
+		<div>
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>Event Name</th>
+						<th>Date</th>
+						<th>Venue</th>
+						<th>City</th>
+						<th>State</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in eventList">
+						<td>{{ x.name }}</td>
+						<td>{{ x.date | date : "y-MM-dd h:mm a" }}</td>
+						<td>{{ x.venue.name }}</td>
+						<td>{{ x.venue.city }}</td>
+						<td>{{ x.venue.state }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#openModal"
+				ng-click="init()">Add Event</button>
+			<!--Add Event Modal -->
+			<div class="modal fade" id="openModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title">Add New Event</h4>
+						</div>
+						<div class="modal-body">
+							<form name="addEventForm" ng-submit="insert(event)">
+								<p>Event Information</p>
+								<input placeholder="Event Name" ng-model="event.name" required>
+								<input type="text" placeholder="Date" ng-model="dateComplete.date" datepicker
+									required /> <select name="timefield" size="1"
+									ng-model="dateComplete.time">
+									<option value="00:00:00">12:00AM</option>
+									<option value="01:00:00">01:00AM</option>
+									<option value="02:00:00">02:00AM</option>
+									<option value="03:00:00">03:00AM</option>
+									<option value="04:00:00">04:00AM</option>
+									<option value="05:00:00">05:00AM</option>
+									<option value="06:00:00">06:00AM</option>
+									<option value="07:00:00">07:00AM</option>
+									<option value="08:00:00">08:00AM</option>
+									<option value="09:00:00">09:00AM</option>
+									<option value="10:00:00">10:00AM</option>
+									<option value="11:00:00">11:00AM</option>
+									<option value="12:00:00">12:00PM</option>
+									<option value="13:00:00">01:00PM</option>
+									<option value="14:00:00">02:00PM</option>
+									<option value="15:00:00">03:00PM</option>
+									<option value="16:00:00">04:00PM</option>
+									<option value="17:00:00">05:00PM</option>
+									<option value="18:00:00">06:00PM</option>
+									<option value="19:00:00">07:00PM</option>
+									<option value="20:00:00">08:00PM</option>
+									<option value="21:00:00">09:00PM</option>
+									<option value="22:00:00">10:00PM</option>
+									<option value="23:00:00">11:00PM</option>
+								</select>
+								<p>Venue Information</p>
+								<input placeholder="Venue Name" ng-model="event.venue.name"
+									required> <input placeholder="Venue City"
+									ng-model="event.venue.city" required> <select
+									name="state" size="1" ng-model="event.venue.state">
+									<option value="AK">AK</option>
+									<option value="AL">AL</option>
+									<option value="AR">AR</option>
+									<option value="AZ">AZ</option>
+									<option value="CA">CA</option>
+									<option value="CO">CO</option>
+									<option value="CT">CT</option>
+									<option value="DC">DC</option>
+									<option value="DE">DE</option>
+									<option value="FL">FL</option>
+									<option value="GA">GA</option>
+									<option value="HI">HI</option>
+									<option value="IA">IA</option>
+									<option value="ID">ID</option>
+									<option value="IL">IL</option>
+									<option value="IN">IN</option>
+									<option value="KS">KS</option>
+									<option value="KY">KY</option>
+									<option value="LA">LA</option>
+									<option value="MA">MA</option>
+									<option value="MD">MD</option>
+									<option value="ME">ME</option>
+									<option value="MI">MI</option>
+									<option value="MN">MN</option>
+									<option value="MO">MO</option>
+									<option value="MS">MS</option>
+									<option value="MT">MT</option>
+									<option value="NC">NC</option>
+									<option value="ND">ND</option>
+									<option value="NE">NE</option>
+									<option value="NH">NH</option>
+									<option value="NJ">NJ</option>
+									<option value="NM">NM</option>
+									<option value="NV">NV</option>
+									<option value="NY">NY</option>
+									<option value="OH">OH</option>
+									<option value="OK">OK</option>
+									<option value="OR">OR</option>
+									<option value="PA">PA</option>
+									<option value="RI">RI</option>
+									<option value="SC">SC</option>
+									<option value="SD">SD</option>
+									<option value="TN">TN</option>
+									<option value="TX">TX</option>
+									<option value="UT">UT</option>
+									<option value="VA">VA</option>
+									<option value="VT">VT</option>
+									<option value="WA">WA</option>
+									<option value="WI">WI</option>
+									<option value="WV">WV</option>
+									<option value="WY">WY</option>
+								</select>
+								<div class="modal-footer">
+									<button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+									<button type="submit" class="btn btn-primary">Add Event</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,2 @@
+INSERT INTO venue (name, city, state) VALUES ('Timesquare', 'New York', 'NY');
+INSERT INTO event (name, date, venue_id) VALUES ('Chicago White Sox vs. Chicago Cubs', CURRENT_TIMESTAMP(), SELECT id FROM venue WHERE name = 'Timesquare');
